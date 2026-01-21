@@ -168,8 +168,8 @@
       "genus": "Eptesicus",
       "nbn_taxon_id": 137168
     }
-  },
-
+  }
+,
   {
     "model": "records.taxon",
     "pk": 16,
