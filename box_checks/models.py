@@ -1,7 +1,6 @@
 from django.contrib.gis.db import models
 from django.conf import settings
 
-
 class Site(models.Model):
     name = models.TextField()
     run_by = models.ForeignKey(
