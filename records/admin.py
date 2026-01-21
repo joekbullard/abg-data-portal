@@ -1,3 +1,4 @@
 from django.contrib import admin
+from records.models.taxonomy import Taxon
 
-# Register your models here.
+admin.site.register(Taxon, admin.ModelAdmin)
