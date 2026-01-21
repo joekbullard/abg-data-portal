@@ -24,6 +24,7 @@ class Box(models.Model):
     notes = models.TextField(null=True)
 
     class Meta:
+        verbose_name_plural = "boxes"
         unique_together = ["site", "number"]        
     
     def __str__(self):
