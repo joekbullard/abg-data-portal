@@ -16,6 +16,7 @@ class Taxon(models.Model):
 
     class Meta:
         verbose_name_plural = "taxa"
+        ordering = ["scientific_name"]
     
     def __str__(self):
         return f"{self.common_name}"
