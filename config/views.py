@@ -1,5 +1,6 @@
-from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.response import TemplateResponse
+from django.contrib.auth.decorators import login_required
 
-class IndexView(LoginRequiredMixin, TemplateView):
-    template_name = "index.html"
+@login_required
+def home_view(request):
+    return TemplateResponse(request, 'index.html')
