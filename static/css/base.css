@@ -1,0 +1,27 @@
+/* --- GeoDjango OSMWidget sanity fixes --- */
+
+.dj_map_wrapper {
+    display: block;
+    width: 800px;
+    margin-bottom: 1rem;
+}
+
+/* Ensure the map actually has space */
+.dj_map {
+    width: 100%;
+    height: 400px; /* adjust as needed */
+}
+
+/* Prevent buttons/links overlapping following elements */
+.clear_features {
+    display: block;
+    clear: both;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Make sure OpenLayers viewport fills the map */
+.dj_map .ol-viewport {
+    width: 100%;
+    height: 100%;
+}
