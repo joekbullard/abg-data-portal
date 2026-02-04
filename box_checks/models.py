@@ -17,7 +17,8 @@ class Box(models.Model):
     uid = models.UUIDField(primary_key=True)
     site = models.ForeignKey(
         to=Site,
-        on_delete=models.PROTECT)
+        on_delete=models.PROTECT,
+        related_name="boxes")
     number = models.IntegerField()
     model = models.TextField()
     geom = models.PointField(srid=4326)

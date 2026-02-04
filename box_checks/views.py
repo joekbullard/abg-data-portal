@@ -6,6 +6,7 @@ from django.core import serializers
 from django.template.response import TemplateResponse
 from django.http import HttpRequest, HttpResponse
 from django.template import loader
+import json
 
 @login_required
 def create_site(request: HttpRequest) -> HttpResponse:
@@ -23,7 +24,22 @@ def create_site(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def site_detail(request:HttpRequest, pk: int) -> HttpResponse:
-    site = get_object_or_404(Site, pk=pk)
-    box_geojson = serializers.serialize("geojson", Box.objects.filter(site=site), geometry_field="geom", id_field="id")
+    site = get_object_or_404(Site.objects.prefetch_related('boxes'), pk=pk)
+
+    box_geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": box.pk,
+                "geometry": json.loads(box.geom.geojson),
+                "properties": {
+                    "name": box.number,
+                }
+            }
+            for box in site.boxes.all()
+        ]
+    }
+
     context = {"site": site, "boxes": box_geojson}
     return render(request, "box-checks/site-detail.html", context=context)
